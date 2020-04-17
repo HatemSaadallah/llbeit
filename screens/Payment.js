@@ -16,7 +16,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle'
 import DropdownMenu from 'react-native-dropdown-menu';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {InputGroup} from 'react-bootstrap';
 
+import '../components/styles/Payment.css'
 
 
 export default function Payment({navigation}){
@@ -24,25 +27,38 @@ export default function Payment({navigation}){
     const handleChange = (event) => {
         setValue(event.target.value);
     };
+    const styleRadio = {
+        marginTop: 20,
+    }
     const [open, setOpen] = React.useState(false);
     const [dropDownMenu, setDropDownMenu] = React.useState('');
     let dataDropDown = ["Hello", "Hi", "Henlo"];
     const handleClickOpen = (event) => {
         setOpen(true);
-        console.log(event.target.value);
     };
 
     const handleClose = (event) => {
         setOpen(false);
-        navigation.navigate('OrderScreen');
+        
     };
+    const handleCloseAndMoveOn = (event) => {
+        navigation.navigate('OrderScreen');
+        setOpen(false);
+    };
+
     const [text, setText] = React.useState('');
     return(
         <View>
+            <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+            />
         <View style={styles.container}>
-            <Text style={styles.text}>
+            <h2>
                 التأكد من المعلومات
-            </Text>
+            </h2>
             <TextField
                 required
                 id="standard-basic" 
@@ -54,36 +70,46 @@ export default function Payment({navigation}){
                 label="رقم الجوال" 
                 type="number"
                 />
-            <Text>اختر طريقة التوصيل</Text>
+            <h3 class="methodPurchasing">
+                اختر طريقة التوصيل
+            </h3>
         </View>
-        <FormControl component="fieldset">
-            <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                <FormControlLabel value="female" control={<Radio />} label="اكتب العنوان" />
-                <FormControlLabel value="male" control={<Radio />} label="اختر العنوان " />
-            </RadioGroup>
-        </FormControl>
+        <div class="mthodlol">
+            <InputGroup>
+                <InputGroup.Prepend>
+                <InputGroup.Radio style={styleRadio} name="hi" aria-label="Radio button for following text input" />
+                <span>وضع العنوان يدويا</span>
+                </InputGroup.Prepend>
+                <InputGroup.Prepend>
+                <InputGroup.Radio style={styleRadio} name="hi" aria-label="Radio button for following text input" />
+                <span>استخدام خدمة خرائط جوجل</span>
+                </InputGroup.Prepend>
+                <FormControl aria-label="Text input with radio button" />
+            </InputGroup>
+        </div>
+
+
         <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         التالي
       </Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title">تأكيد عملية الشراء</DialogTitle>
         <DialogContent>
-          <Text style={styles.textMessage}>
-            ضع عنوانك هنا
-          </Text>
           <TextInput
                 style={{height: 40}}
                 placeholder="مثال: غزة - شارع النصر"
                 onChangeText={text => setText(text)}
                 defaultValue={text}
             />
-
+        <Text style={styles.textMessage}>
+            ضع عنوان سكنك هنا:          
+        </Text>
         </DialogContent>
         <DialogActions>
-          <Button onClick={(e) => this.handleClose(e)} color="primary">
+          <Button onClick={handleClose} color="primary">
             إلغاء
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleCloseAndMoveOn} color="primary">
             شراء
             
           </Button>

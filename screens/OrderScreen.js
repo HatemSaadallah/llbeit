@@ -1,68 +1,116 @@
 import React from 'react';
-import {Text, StyleSheet, SafeAreaView, Button} from 'react-native';
+import {Text, StyleSheet, SafeAreaView, View, Button} from 'react-native';
+
 import HorizontalLine from '../components/HorizontalLine';
+import BackButton from '../components/BackButton';
+import '../components/styles/OrderScreen.css'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 
-export default function OrderScreen({navigation: {goBack}}){
-
+export default function OrderScreen({ navigation }){
+    // const [open, setOpen] = React.useState(false);
+    // const handleClickOpen = (event) => {
+    //     setOpen(true);
+    // };
+    
+    // const handleClose = (event) => {
+    //     setOpen(false);
+        
+    // };
+    // const handleCloseAndMoveOn = (event) => {
+    //     navigation.navigate('HomeStore');
+    //     setOpen(false);
+    // };
     return (
-    <SafeAreaView style={styles.container}>
-        <SafeAreaView style={styles.containerUpper}>
-            <Text>رقم الطلب: 34354343</Text>
-        </SafeAreaView>
-        <SafeAreaView style={styles.containerMiddle}>
-            <Text>كاش</Text>
-            <Text style={styles.cashWord}>طريقة الدفع</Text>
-        </SafeAreaView>
-        <HorizontalLine />
-        <Button 
-            style={styles.orderNow} 
-            title="قم بالطلب"
-            onPress={() => goBack()}
-            />
-        <Button 
-            style={styles.Cancel} 
-            title="إلغاء"
-            onPress={() => goBack()}/>
-    </SafeAreaView>
+        <View>
+        <BackButton />
+        <View>
+            <div class="cardBoard">
+                <div class="heading"> 
+                    <h6>رقم الطلب: 59393838</h6>   
+                    
+                </div>
+                <hr />
+                <div class="container">
+                    <span>:طريقة الدفع </span>
+                    <span class="cash">كاش</span>
+                    <hr />
+                    <span>:التكلفة الأولية </span>
+                    <span class="cash">₪32</span>
+                    <br />
+                    <span>:تكلفة التوصيل </span>
+                    <span class="cash">₪3</span>
+                    <br />
+                    <span>:مصاريف الأخرى </span>
+                    <span class="cash">₪3</span>
+                    <br />
+                    <span>:خصم </span>
+                    <span class="cash">-</span>
+                    <br />
+                    <span>:ضريبة </span>
+                    <span class="cash">₪1.60</span>
+                    <br />
+                    <br />
+                    <br />
+                    <span>:المجموع الكلي </span>
+                    <span class="cash">₪40.60</span>
+                </div>
+            </div>
+            </View>
+            <div class="accpepted">
+                <h6>شكرا على استخدامكم خدمة للبيت</h6>
+            </div>
+            
+            <Button
+                color="#841584"
+                title="شراء"
+                style={styles.buttonhshsh}
+            
+                />  
+
+            <Button
+                color="#841584"
+                title="إلغاء"
+                onPress={() => navigation.navigate('Root')}
+                />
+ 
+            
+
+        </View>   
     );   
 }
 
+
+
 const styles = StyleSheet.create({
+
     container: {
-        backgroundColor: 'white',
-        borderRadius: 5,
-        borderWidth: 2,
-        width: '70%',
-        height: '70%',
-        alignSelf: 'center',
-        marginTop: 30,
-    },
-    containerUpper: {
-        backgroundColor: 'green',
-        borderWidth: 2,
-        width: '100%',
-        height: '20%',
+        marginTop: 50,
+        width: '80%',
+        alignItems: 'center',
         alignSelf: 'center',
     },
-    containerMiddle: {
-        flexDirection: 'row',
-        position: 'relative',
-        left: 20,
+    container2: {
+        width: '80%',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
-    cashWord: {
-        position: 'absolute',
-        right: 40,
+    text: {
     },
-    Cancel: {
+    button: {
         position: 'absolute',
         bottom: 0,
-        width: '80%',
-        backgroundColor: 'white',
+        marginTop: 200,
     },
-    orderNow: {
-        position: 'relative',
-        bottom: 20,
-        width: '80%',
+    textMessage: {
+        flexDirection: 'column',
+        fontWeight: 'bold',
     },
+    buttonhshsh: {
+        marginBottom: 10,
+    }
 });

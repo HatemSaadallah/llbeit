@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   input: {
-    textAlign: "right",
+
   },
   row: {
     flexDirection: 'row',

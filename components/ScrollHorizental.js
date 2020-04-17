@@ -4,12 +4,16 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
+import {TouchableOpacity} from 'react-native'
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import {tileData} from './tileData';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: '  ',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
@@ -19,9 +23,10 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+    color: 'white',
   },
   title: {
-    color: theme.palette.primary.light,
+    color: 'white',
   },
   titleBar: {
     background:
@@ -48,13 +53,16 @@ const useStyles = makeStyles((theme) => ({
  */
 export default function ScrollHorizental() {
   const classes = useStyles();
+  const [count, setCount] = React.useState(true);
+  const onTouch = () => setCount(!count);
 
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={2.5}>
         {tileData.map((tile) => (
-          <GridListTile key={tile.img}>
-            <img src={tile.img} alt={tile.title} />
+          <GridListTile key={tile.img} >
+            <img src={tile.img} alt={tile.title}  />
+             
             <GridListTileBar
               title={tile.title}
               classes={{
@@ -63,7 +71,9 @@ export default function ScrollHorizental() {
               }}
               actionIcon={
                 <IconButton aria-label={`star ${tile.title}`}>
-                  <StarBorderIcon className={classes.title} />
+                  <TouchableOpacity onPress={onTouch}>
+                    {count ? <CheckBoxOutlineBlankIcon className={classes.title} /> : <CheckBoxIcon className={classes.title} />}
+                  </TouchableOpacity>
                 </IconButton>
               }
             />

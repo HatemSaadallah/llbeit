@@ -16,7 +16,7 @@ import HomeStore from './screens/HomeStore'
 import Payment from './screens/Payment'
 import DialogScreen from './components/Dialog';
 import OrderScreen from './screens/OrderScreen';
-
+import Fruits from './screens/Fruits';
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -69,6 +69,7 @@ export default function App(props) {
           <Stack.Screen name="Payment" component={Payment}/>
           <Stack.Screen name="Dialog" component={DialogScreen}/>
           <Stack.Screen name="OrderScreen" component={OrderScreen}/>
+          <Stack.Screen name="Fruits" component={Fruits}/>
           </Stack.Navigator>
         </NavigationContainer>
       </View>

@@ -35,7 +35,6 @@ export const RecipeCard = StyleSheet.create({
     flex: 1,
     fontSize: 17,
     fontWeight: 'bold',
-    textAlign: 'center',
     color: '#444444',
     marginTop: 3,
     marginRight: 5,
